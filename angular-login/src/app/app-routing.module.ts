@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
-const routes: Routes = [];
+const routes: Routes = [{path:'setCredentials',component:RegisterUserComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

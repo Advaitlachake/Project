@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { NetworkServiceService } from './service/network-service.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,10 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     MatFormFieldModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule ,
+    HttpClientModule 
   ],
-  providers: [],
+  providers: [NetworkServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

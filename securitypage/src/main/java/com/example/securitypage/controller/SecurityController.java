@@ -3,7 +3,7 @@ package com.example.securitypage.controller;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
@@ -23,9 +23,10 @@ public class SecurityController {
     @PostMapping(value="/setCredentials", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
         MediaType.APPLICATION_JSON_VALUE })
         public String storeCredentials(@RequestBody String details) {
-            JSONObject request = new JSONObject(details);
-            mongoTemplate.insert(request, "User");
-            return "";
+            System.out.print(details);
+            //JSONObject request = new JSONObject(details);
+            mongoTemplate.insert(details, "User");
+            return "success";
 
 }
 }
