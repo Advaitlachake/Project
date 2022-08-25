@@ -19,15 +19,16 @@ export class NetworkServiceService {
       console.log("In Send details");
       let emailReqBody = {
         "email" : emailAddress,
-        "name" :userName,
-        "pass":password
+        "username" :userName,
+        "password":password
       }
-      const options = {
-        headers: new HttpHeaders({
-          "source":"LandSPage"
-        })
-      }
-      return this.http.post(environment.loginlink + "setCredentials", emailReqBody,options);
+      // const options = {
+      //   headers: new HttpHeaders({
+      //     "source":"LandSPage"
+      //   })
+      // }
+      console.log(emailReqBody);
+      return this.http.post(environment.loginlink + "setCredentials", emailReqBody);
       
     }
     

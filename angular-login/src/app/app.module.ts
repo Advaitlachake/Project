@@ -16,6 +16,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { NetworkServiceService } from './service/network-service.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { NetworkServiceService } from './service/network-service.service';
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule ,
-    HttpClientModule 
+    ReactiveFormsModule,
+    HttpClientModule ,
+    BrowserModule
+  
   ],
   providers: [NetworkServiceService],
   bootstrap: [AppComponent]

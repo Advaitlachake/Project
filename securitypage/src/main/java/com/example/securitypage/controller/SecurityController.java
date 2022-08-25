@@ -26,7 +26,7 @@ public class SecurityController {
             System.out.print(details);
             //JSONObject request = new JSONObject(details);
             mongoTemplate.insert(details, "User");
-            return "success";
+            return details;
 
 }
 }

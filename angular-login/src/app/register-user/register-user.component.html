@@ -1,20 +1,40 @@
 <div class="login-page">
     <mat-card class="mat-elevation-z12">
       <mat-card-title style="text-align:center;">SignIn/SignUp</mat-card-title>
-      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs"> 
+     
         <mat-tab label="Sign In">
             <mat-card-content>
-              <form action="">
+              <form [formGroup]="signIn"> 
                 <mat-form-field>
-                  <input matInput placeholder="Email" required name="email" ngModel #email="ngModel">
-                    <mat-error *ngIf="email.invalid">Email is required</mat-error>
+                  <input matInput placeholder="Email" class="form-control" required formControlName="semail">
                   <mat-icon matSuffix>email</mat-icon>
+                  <div *ngIf="signIn.controls['semail'].invalid && (signIn.controls['semail'].dirty || signIn.controls['semail'].touched)" class="alert">
+                    <div *ngIf="signIn.controls['semail'].errors?.['required']">
+                    Please enter Email
+                  </div>
+                  <div *ngIf="signIn.controls['semail'].errors?.['invalid']">
+                    Please enter correct Email
+                  </div>
+                  </div>
+                  
+
                 </mat-form-field>
                 <mat-form-field>
-                  <input  matInput placeholder="Password" type="password" required minlength="6" name="password" ngModel #password="ngModel">
-                    <mat-error *ngIf="password.errors && password.errors['required']"> Password is required</mat-error>
-                    <mat-error *ngIf="password.errors && password.errors['minlength']">Password must be of length 6</mat-error>
+                  <input  matInput placeholder="Password"  class="form-control" type="password"  formControlName="spassword" >
+                    
                   <mat-icon matSuffix>lock</mat-icon>
+                  <div *ngIf="signIn.controls['spassword'].invalid && (signIn.controls['spassword'].dirty || signIn.controls['spassword'].touched)" class="alert">
+                    <div *ngIf="signIn.controls['spassword'].errors?.['required']">
+                    Please enter password
+                  </div>
+                  <div *ngIf="signIn.controls['spassword'].errors?.['invalid']">
+                    Please enter correct password as per format 
+                  </div>
+                  <div *ngIf="signIn.controls['spassword'].errors?.['minlength']">
+                    Password must be at least 6 character long.
+                  </div>
+                  </div>
                 </mat-form-field>
                 
                 <button  mat-raised-button color="primary"class="login-button">Sign In</button>
@@ -23,44 +43,79 @@
               </form>
             </mat-card-content>
         </mat-tab>
+        
         <mat-tab label="Sign Up">
+          
           <mat-card-content>
-            <form>
+            <form [formGroup]="signUp" (ngSubmit)="setDetails()">
+             
               <mat-form-field>
-                <input matInput placeholder="User Name"required name="username" ngModel #username="ngModel">
+                <input  matInput placeholder="User Name" class="form-control" formControlName="username">
+                  
                 <mat-icon matSuffix>perm_identity</mat-icon>
-                <mat-error
-                  *ngIf="username.invalid">
-                  Username is required
-                </mat-error>
-  
+                 <div *ngIf="signUp.controls['email'].invalid && (signUp.controls['email'].dirty || signUp.controls['email'].touched)" class="alert">
+                  <div *ngIf="signUp.controls['email'].errors?.['required']">
+                  Please enter username
+                </div>
+                <div *ngIf="signUp.controls['email'].errors?.['invalid']">
+                  Please enter correct Email
+                </div>
+                </div> 
+       
               </mat-form-field>
               <mat-form-field>
-                <input  matInput placeholder="Email" required name="email"
-                  ngModel
-                  #email="ngModel">
-                  <mat-error *ngIf="email.invalid">Email is required</mat-error>
+                <input  matInput placeholder="Email" class="form-control" formControlName="email">
+                  
                 <mat-icon matSuffix>email</mat-icon>
+                <div *ngIf="signUp.controls['email'].invalid && (signUp.controls['email'].dirty || signUp.controls['email'].touched)" class="alert">
+                  <div *ngIf="signUp.controls['email'].errors?.['required']">
+                  Please enter Email
+                </div>
+                <div *ngIf="signUp.controls['email'].errors?.['invalid']">
+                  Please enter correct Email
+                </div>
+                </div>
+       
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="Password" type="password" required minlength="6" name="password" ngModel #password="ngModel">
-                  <mat-error *ngIf="password.errors && password.errors['required']"> Password is required</mat-error>
-                  <mat-error *ngIf="password.errors && password.errors['minlength']">Password must be of length 6</mat-error>
+                <input matInput placeholder="Password" type="password" class="form-control" formControlName="password" >
+                  
                 <mat-icon matSuffix>lock</mat-icon>
-  
+                <div *ngIf="signUp.controls['password'].invalid && (signUp.controls['password'].dirty || signUp.controls['password'].touched)" class="alert">
+                  <div *ngIf="signUp.controls['password'].errors?.['required']">
+                  Please enter password
+                </div>
+                <div *ngIf="signUp.controls['password'].errors?.['invalid']">
+                  Please enter correct password as per format 
+                </div>
+                <div *ngIf="signUp.controls['password'].errors?.['minlength']">
+                  Password must be at least 6 character long.
+                </div>
+                </div>
               </mat-form-field>
               <mat-form-field>
-                  <input matInput placeholder="Password" type="password" required minlength="6" name="repassword" ngModel
-                  #repassword="ngModel">
-                  <mat-error
-                    *ngIf="repassword.errors && repassword.errors['required']">Re-Enter Password is required </mat-error>
+                  <input matInput placeholder="Password" type="password" class="form-control" formControlName="repassword">
+    
                 <mat-icon matSuffix>lock</mat-icon>
+                <div *ngIf="signUp.controls['repassword'].invalid && (signUp.controls['repassword'].dirty || signUp.controls['repassword'].touched)" class="alert">
+                  <div *ngIf="signUp.controls['repassword'].errors?.['required']">
+                  Please enter password to confirm
+                </div>
+                <div *ngIf="signUp.controls['repassword'].errors?.['invalid']">
+                  Please enter correct password as per format
+                </div>
+                <div *ngIf="signUp.controls['repassword'].errors?.['minlength']">
+                  Password must be at least 6 character long.
+                </div>
+                </div>
               </mat-form-field>
-              <button mat-raised-button color="primary" class="login-button"(click)="setDetails()" > Sign Up</button>
+              <button mat-raised-button color="primary" class="login-button"type ="submit" > Sign Up</button>
             </form>
           </mat-card-content>
+        
         </mat-tab>
-      </mat-tab-group>
-    </mat-card>
+      </mat-tab-group> 
+     
+     </mat-card> 
   </div>
   
