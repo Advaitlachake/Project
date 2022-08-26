@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NetworkServiceService } from '../service/network-service.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { User } from '../user';
 
 
 
@@ -33,10 +35,15 @@ export class RegisterUserComponent implements OnInit {
   nameValue:any="";
   emailValue:any="";
   passValue:any="";
-  
-  constructor( private networkService: NetworkServiceService) { }
 
+  user: User;
+  constructor( private route: ActivatedRoute, private networkService: NetworkServiceService, private router: Router,) { 
+
+    this.user = new User();
+  }
+  
   ngOnInit(): void {
+   
   }
   
   setDetails():void{
@@ -50,7 +57,15 @@ export class RegisterUserComponent implements OnInit {
     
      console.log("Pass value : ",this.signUp.controls.password.value );
      console.warn(this.signUp.value);
-     this.networkService.sendDetails(this.nameValue,this.emailValue,this.passValue);
+     //this.networkService.sendDetails(this.nameValue,this.emailValue,this.passValue);
+     this.user.username=this.nameValue;
+     this.user.email=this.emailValue;
+     this.user.password=this.passValue;
+     this.networkService.save(this.user).subscribe(result => this.gotoUserList());
   }
+  gotoUserList() {
+    this.router.navigate(['/setCredentials']);
+  }
+  
 
 }

@@ -18,9 +18,9 @@ public class SecurityController {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    private ConcurrentMap<String, String> otpAuthMap = new ConcurrentHashMap<>();
+    //private ConcurrentMap<String, String> otpAuthMap = new ConcurrentHashMap<>();
 
-    @PostMapping(value="/setCredentials", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+    @PostMapping(value="/setCredentials", consumes = { MediaType.ALL_VALUE }, produces = {
         MediaType.APPLICATION_JSON_VALUE })
         public String storeCredentials(@RequestBody String details) {
             System.out.print(details);

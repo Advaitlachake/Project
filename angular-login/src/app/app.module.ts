@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { NetworkServiceService } from './service/network-service.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -38,7 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule ,
     ReactiveFormsModule,
     HttpClientModule ,
-    BrowserModule
+    BrowserModule,AppRoutingModule
   
   ],
   providers: [NetworkServiceService],
