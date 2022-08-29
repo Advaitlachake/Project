@@ -42,6 +42,9 @@ export class NetworkServiceService {
     public save(user: User) {
       return this.http.post<User>(this.usersUrl, user);
     }
+    getUserDetails(email: String,password:String) {
+      return this.http.get<any>( 'http://localhost:8081/getCredentials/'+ 'email/' + email+'password/'+password);
+    }
     
 }    
 

@@ -35,6 +35,8 @@ export class RegisterUserComponent implements OnInit {
   nameValue:any="";
   emailValue:any="";
   passValue:any="";
+  semailValue:any="";
+  spasswordValue:any="";
 
   user: User;
   constructor( private route: ActivatedRoute, private networkService: NetworkServiceService, private router: Router,) { 
@@ -44,6 +46,17 @@ export class RegisterUserComponent implements OnInit {
   
   ngOnInit(): void {
    
+  }
+
+  getDetails():void{
+    this.semailValue=this.signIn.controls.semail.value;
+    this.spasswordValue=this.signIn.controls.spassword.value;
+    console.log("Email value:",this.signIn.controls.semail.value);
+    console.log("Password Value",this.signIn.controls.spassword.value);
+    
+    this.networkService.getUserDetails(this.semailValue,this.spasswordValue);
+  
+  
   }
   
   setDetails():void{
