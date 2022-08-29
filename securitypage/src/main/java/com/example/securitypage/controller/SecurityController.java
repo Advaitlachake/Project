@@ -68,8 +68,10 @@ public class SecurityController {
 
         if(mongoTemplate.exists(query, "User"))
         {
+          System.out.println("Success");
                 return true;
         }
+        System.out.println("Faliure");
         return false;
         
       }

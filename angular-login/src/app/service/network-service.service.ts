@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import { NgModule } from '@angular/core';
 import { User } from '../user';
+import { User1 } from '../user1';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,12 @@ import { User } from '../user';
 export class NetworkServiceService {
 
   private usersUrl: string;
+  private usersUrl1:string;
+
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8081/setCredentials';
+    this.usersUrl1= 'http://localhost:8081/getCredentials';
+
   }
 
   
@@ -42,12 +47,13 @@ export class NetworkServiceService {
     public save(user: User) {
       return this.http.post<User>(this.usersUrl, user);
     }
-    getUserDetails(email: String,password:String) {
-      return this.http.get<any>( 'http://localhost:8081/getCredentials/'+ 'email/' + email+'password/'+password);
+   public getUserDetails(user1:User1) {
+      
+    //console.log( this.usersUrl1+'/'+user1.email+'/'+user1.password);
+      return this.http.get<any>( this.usersUrl1+'/'+user1.email+'/'+user1.password);
     }
-    
-}    
+   
 
-
+  }
 
 

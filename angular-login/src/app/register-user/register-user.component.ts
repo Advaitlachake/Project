@@ -8,6 +8,7 @@ import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { User } from '../user';
+import { User1 } from '../user1';
 
 
 
@@ -39,9 +40,11 @@ export class RegisterUserComponent implements OnInit {
   spasswordValue:any="";
 
   user: User;
+  user1:User1;
   constructor( private route: ActivatedRoute, private networkService: NetworkServiceService, private router: Router,) { 
 
     this.user = new User();
+    this.user1=new User1();
   }
   
   ngOnInit(): void {
@@ -53,8 +56,12 @@ export class RegisterUserComponent implements OnInit {
     this.spasswordValue=this.signIn.controls.spassword.value;
     console.log("Email value:",this.signIn.controls.semail.value);
     console.log("Password Value",this.signIn.controls.spassword.value);
+    this.user1.email=this.semailValue;
+    this.user1.password=this.spasswordValue;
     
-    this.networkService.getUserDetails(this.semailValue,this.spasswordValue);
+    this.networkService.getUserDetails(this.user1).subscribe(res => {
+      console.log("Response : ",res);
+    });
   
   
   }
